@@ -95,10 +95,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd myBlog</span><br><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next.git themes&#x2F;next</span><br></pre></td></tr></table></figure>
 <p>修改<code>_config.yml</code>  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>test</category>
       </categories>
