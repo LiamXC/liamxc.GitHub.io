@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>野谷 Wild Valley</title>
+  
+  
+  <link href="https://liamxc.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://liamxc.github.io/"/>
+  <updated>2021-03-16T13:25:17.798Z</updated>
+  <id>https://liamxc.github.io/</id>
+  
+  <author>
+    <name>野谷</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>video test</title>
+    <link href="https://liamxc.github.io/posts/a46a54ce.html"/>
+    <id>https://liamxc.github.io/posts/a46a54ce.html</id>
+    <published>2021-03-16T13:06:49.000Z</published>
+    <updated>2021-03-16T13:25:17.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是测试hexo next 插入图片和视频的test</p><p><img src="/posts/a46a54ce.htm/blogAvatar.JPG" alt="blogAvatar"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这是测试hexo next 插入图片和视频的test&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/posts/a46a54ce.htm/blogAvatar.JPG&quot; alt=&quot;blogAvatar&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="test" scheme="https://liamxc.github.io/categories/test/"/>
+    
+    
+    <category term="video image" scheme="https://liamxc.github.io/tags/video-image/"/>
+    
+  </entry>
+  
+</feed>

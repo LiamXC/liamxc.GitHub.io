@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
+  <entry>
+    <title>video test</title>
+    <url>/posts/a46a54ce.html</url>
+    <content><![CDATA[<p>这是测试hexo next 插入图片和视频的test</p>
+<p><img src="/posts/a46a54ce.htm/blogAvatar.JPG" alt="blogAvatar"></p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>video image</tag>
+      </tags>
+  </entry>
 </search>
