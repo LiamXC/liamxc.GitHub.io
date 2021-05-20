@@ -23,13 +23,13 @@
     <published>2021-03-16T13:06:49.000Z</published>
     <updated>2021-03-16T13:33:54.571Z</updated>
     
-    <content type="html"><![CDATA[<p>这是测试hexo next 插入图片和视频的test</p><p><img src="/posts/a46a54ce.htm/blogAvatar.JPG" alt="blogAvatar"></p>]]></content>
+    <content type="html"><![CDATA[<p>这是测试hexo next 插入图片和视频的test</p><p><img src="/posts/a46a54ce/blogAvatar.JPG" alt="blogAvatar"></p>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;这是测试hexo next 插入图片和视频的test&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/posts/a46a54ce.htm/blogAvatar.JPG&quot; alt=&quot;blogAvatar&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/posts/a46a54ce/blogAvatar.JPG&quot; alt=&quot;blogAvatar&quot;&gt;&lt;/p&gt;
 </summary>
       
     
