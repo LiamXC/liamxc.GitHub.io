@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>野谷-YEGU</title>
   
-  
+  <subtitle>Wild Valley</subtitle>
   <link href="https://liamxc.github.io/atom.xml" rel="self"/>
   
   <link href="https://liamxc.github.io/"/>
