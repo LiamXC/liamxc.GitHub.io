@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/YEGU.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/YEGU-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/YEGU-16x16.ico">
+  <link rel="mask-icon" href="/images/YEGU.svg" color="#222">
+  <meta name="google-site-verification" content="D-wIivd4YXlzBcPnej7QuENDM3_p5-WE8Qv_BKu5go8">
+  <meta name="baidu-site-verification" content="code-Rpi3bjsXpJ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.yegu.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":{"enable":true,"onlypost":false,"loadingImg":"/images/loading/loading.gif"},"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2. 线性表 线性表的定义和基本操作 线性表的顺序表示  顺序表的定义 顺序表的基本操作  线性表的链式表示  单链表的定义 单链表的基本操作 几种常用的链接  双链表 循环链表 静态链表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构笔记02-线性表">
+<meta property="og:url" content="https://www.yegu.top/posts/58986168.html">
+<meta property="og:site_name" content="野谷-YEGU">
+<meta property="og:description" content="2. 线性表 线性表的定义和基本操作 线性表的顺序表示  顺序表的定义 顺序表的基本操作  线性表的链式表示  单链表的定义 单链表的基本操作 几种常用的链接  双链表 循环链表 静态链表">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/mwbGKye76Sl2xHF.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/oYFJHtpuyglbeOz.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/alBQwZcEeoNk6OL.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/Tw1gDlANxjIWzRi.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/vy84gzZ7BPrCAuV.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/3KFtkgs4inS8dJo.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/FSPfABjkrwcRy45.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/YOvWIfb5VuM2Ncl.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/9lkcrBfVyeXbau1.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/tdhXM7u18b5scIi.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/rilsSvLzuhdQD7A.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/SgRnrFGNbT1qOe3.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/j2SR8XcibqZHOPx.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/lOYJTUqbhc8ZuXN.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/nbQhgYJ6ydMsNKB.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/aheduQg1Bq9OVGb.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/03/PuV2KDkf4cW6TC7.png">
+<meta property="article:published_time" content="2021-06-03T03:23:30.000Z">
+<meta property="article:modified_time" content="2021-06-03T04:39:57.059Z">
+<meta property="article:author" content="野谷">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/03/mwbGKye76Sl2xHF.png">
+
+<link rel="canonical" href="https://www.yegu.top/posts/58986168.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据结构笔记02-线性表 | 野谷-YEGU</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1VB69LMTC4"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1VB69LMTC4');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?df0fbe659a097602a8bc4c48f3609ad6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="野谷-YEGU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">野谷-YEGU</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Wild Valley</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tools">
+
+    <a href="/tools/" rel="section"><i class="fa fa-fw fa-rocket fa-fw"></i>tools</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/liamxc" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yegu.top/posts/58986168.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.loli.net/2021/05/21/J5CNRjyPItOwvL8.png">
+      <meta itemprop="name" content="野谷">
+      <meta itemprop="description" content="门前种柳深成巷，野谷流泉添入池。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野谷-YEGU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构笔记02-线性表
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-03 11:23:30 / 修改时间：12:39:57" itemprop="dateCreated datePublished" datetime="2021-06-03T11:23:30+08:00">2021-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/58986168.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/58986168.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="线性表">2. 线性表</h1>
+<p>线性表的定义和基本操作</p>
+<p>线性表的顺序表示</p>
+<ul>
+<li>顺序表的定义</li>
+<li>顺序表的基本操作</li>
+</ul>
+<p>线性表的链式表示</p>
+<ul>
+<li>单链表的定义</li>
+<li>单链表的基本操作</li>
+<li>几种常用的链接
+<ul>
+<li>双链表</li>
+<li>循环链表</li>
+<li>静态链表 <a id="more"></a></li>
+</ul></li>
+</ul>
+<h2 id="线性表的定义和基本操作">2.1 线性表的定义和基本操作</h2>
+<h3 id="线性表的定义">线性表的定义</h3>
+<p>线性表是其有 <strong>相同类型</strong> 的 <span class="math inline">\(n(n\geq0)\)</span> 个元素的 <strong>有限序列</strong>, 其中n为表长, 当 <span class="math inline">\(n=0\)</span> 时, 该表为空表。</p>
+<p>若L命名为线性表, 则一般表示为<span class="math inline">\(L=(a_1, a_2, ...,a_i,a_{i+1}, ... ,a_n)\)</span></p>
+<h3 id="线性表的特点">线性表的特点</h3>
+<ul>
+<li>表中元素个数 <strong>有限</strong></li>
+<li>表中元素具有逻辑上的顺序性,在序列中各个元素排序有其 <strong>先后次序</strong></li>
+<li>表中元素都是 <strong>数据元素</strong>, 每个元素都是单个元素</li>
+<li>表中元素的 <strong>数据类型都相同</strong>, 这意味着每个元素占有相同大小的存储空间</li>
+<li>表中元素具有 <strong>抽象性</strong>, 即讨论元素间一对一的逻辑关系, 而不考虑元素究竟表示的内容</li>
+<li>线性表是一种 <strong>逻辑结构</strong>, 表示元素之间一对一相邻的关系</li>
+</ul>
+<h3 id="线性表的九种基本操作">线性表的九种基本操作</h3>
+<p><code>InitList(&amp;L)</code>: 初始化表, 构造一个空的线性表。 <code>DestroyList(&amp;L)</code>: 销毁操作。销毁线性表, 并释放线性表L所占用的内存空间。</p>
+<p><code>LocateElem(L,e)</code>: 按值查找操作。在表中L查找具有给定关键字信得元素。 <code>GetELem(L,i)</code>: 按位查找操作。获取表L中第i个位置的元素的值。</p>
+<p><code>ListInsert(&amp;L,i,e)</code>: 插入操作。在表L中的第<u>i个位置</u>上插入指定元素e。前插 <code>ListDelete(&amp;L,i,&amp;e)</code>: 删除操作。删除表L中第i个位置的元素, 并用e返回删除元素的值。</p>
+<p><code>PrintList(L)</code>: 输出操作。按前后顺序输出线性表L的所有元素值。 <code>Empty(L)</code>: 判空操作。若L为空表, 则返回 <code>TRUE</code>, 否则返回 <code>FALSE</code>。 <code>Length(L)</code>: 求表长。返回线性表L的长度, 即L中数据元素的个数</p>
+<blockquote>
+<p><code>&amp;</code> 引用, 在局部定义域内可以操作外部变量</p>
+</blockquote>
+<h2 id="线性表的顺序表示">2.2 线性表的顺序表示</h2>
+<h3 id="顺序表的定义">2.2.1顺序表的定义</h3>
+<p>线性表的顺序存储又称 <strong>顺序表</strong></p>
+<p>一组地址连续存放的存储单元依次存放线性表的元素, 从而使得逻辑上相邻的两个元素在物理位置上也相邻。</p>
+<blockquote>
+<p>数组下标起始为<code>0</code>, 有个数上限 <code>MaxSize-1</code></p>
+</blockquote>
+<ul>
+<li><p>数组静态分配</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MaxSize 50</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">  ElemType data[MaxSize];</span><br><span class="line">  <span class="keyword">int</span> length;</span><br><span class="line">&#125;SqList;  <span class="comment">// 该结构体类型的名字</span></span><br></pre></td></tr></table></figure></li>
+<li><p>数组动态分配</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MaxSize 50</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">  ElemType *data;  <span class="comment">// * 指针--存放存储单元地址</span></span><br><span class="line">  <span class="keyword">int</span> length;</span><br><span class="line">&#125;SqList; </span><br></pre></td></tr></table></figure>
+<p>动态分配语句:</p>
+<p>C:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L.data=(Elemtype*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ElemType)*InitSize);</span><br></pre></td></tr></table></figure>
+<p>C++:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L.data=<span class="keyword">new</span> Elemtype[InitSize]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注: 静态分配时, 存储的数据量超过MaxSize时, 会报错; 动态分配会在内存中重新开辟出一块新的区域, 将原来存储的数据转移到新的内存地址, 并更改指针指向的内存地址, 此时在物理空间仍然是连续的</p>
+</blockquote></li>
+</ul>
+<h3 id="顺序表基本操作">2.2.2 顺序表基本操作</h3>
+<h4 id="插入">插入</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListInsert</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> i,ElemType e)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;L.length+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(L.length&gt;=MaxSize)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=L.length;j&gt;=i;j--)  <span class="comment">// i之后的元素向后移动一位</span></span><br><span class="line">    L.data[j]=L.data[j<span class="number">-1</span>];</span><br><span class="line">  L.data[i<span class="number">-1</span>]=e;</span><br><span class="line">  L.length++;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最好时间复杂度: 在表尾插入(即 <span class="math inline">\(i=n+1\)</span>) -- <label style="color:red">O(1)</label></li>
+<li>平均时间复杂度: 设 <span class="math inline">\(P_i(\cfrac{1}{n+1})\)</span> 是在第 <span class="math inline">\(i\)</span> 个位置上插入一个节点的概率 <span class="math inline">\(\sum\limits_{i=1}^{n+1}P_i(n-i+1)=\cfrac{1}{n+1}\sum\limits_{i=1}^{n+1}(n-i+1)=\cfrac{1}{n+1}\cfrac{n(n+1)}{2}=\cfrac{n}{2}\)</span> -- <label style="color:red">O(n)</label></li>
+<li>最坏时间复杂度: 在表头插入(即 <span class="math inline">\(i=1\)</span>) -- <label style="color:red">O(n)</label></li>
+</ul>
+<h4 id="删除">删除</h4>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ListDelete</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> i, ElemType &amp;e)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;L.length)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  e=L.data[i<span class="number">-1</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;L.length;j++)</span><br><span class="line">    L.data[j<span class="number">-1</span>]=L.data[j];</span><br><span class="line">  L.length--;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>最好时间复杂度: 在表尾删除(即 <span class="math inline">\(i=n\)</span>) -- <label style="color:red">O(1)</label></li>
+<li>平均时间复杂度: 设 <span class="math inline">\(P_i(\cfrac{1}{n})\)</span> 是在第 <span class="math inline">\(i\)</span> 个位置上插入一个节点的概率 <span class="math inline">\(\sum\limits_{i=1}^{n}P_i(n-i)=\cfrac{1}{n}\sum\limits_{i=1}^{n}(n-i)=\cfrac{1}{n}\cfrac{n(n-1)}{2}=\cfrac{n-1}{2}\)</span> -- <label style="color:red">O(n)</label></li>
+<li>最坏时间复杂度: 在表头删除(即 <span class="math inline">\(i=1\)</span>) -- <label style="color:red">O(n)</label></li>
+</ul>
+<h4 id="按值查找">按值查找</h4>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocateElem</span><span class="params">(SqList L, ElemType e)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;L.length;i++)</span><br><span class="line">    <span class="keyword">if</span>(L.data[i]==e)</span><br><span class="line">      <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>最好时间复杂度: 查找的元素就在表头 -- <label style="color:red">O(1)</label></li>
+<li>平均时间复杂度: 设 <span class="math inline">\(P_i(\cfrac{1}{n})\)</span> 是在第 <span class="math inline">\(i\)</span> 个位置上插入一个节点的概率 <span class="math inline">\(\sum\limits_{i=1}^{n}P_i\times i=\cfrac{1}{n}\sum\limits_{i=1}^{n}i=\cfrac{1}{n}\cfrac{n(n+1)}{2}=\cfrac{n+1}{2}\)</span> -- <label style="color:red">O(n)</label></li>
+<li>最坏时间复杂度: 查找的元素在表尾或不存在时 -- <label style="color:red">O(n)</label></li>
+</ul>
+<h2 id="线性表的链式表示">2.3 线性表的链式表示</h2>
+<h3 id="单链表的定义">2.3.1 单链表的定义</h3>
+<h4 id="基本定义">基本定义</h4>
+<p>线性表的链式存储又称<strong>单链表</strong></p>
+<p>通过一组任意的存储单元来存储线性表中的数据元素, 通过 <strong>指针</strong> 实现线性逻辑关系; 数据元素是存储在任意位置, 不是连续的。</p>
+<ul>
+<li><p>线性表的结构: <img data-src="https://i.loli.net/2021/06/03/mwbGKye76Sl2xHF.png" alt="2.3.1-单链表节点结构.png" /></p></li>
+<li><p>结点实现:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span></span><br><span class="line">  ElemType data;               <span class="comment">//数据域</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span>          <span class="comment">//指针域</span></span><br><span class="line">&#125;LNode, *LinkList</span><br></pre></td></tr></table></figure>
+<p>单链表为非随机存取的存取结构(因为需要从表头开始依次查找), 只能实现顺序存取, 不能随机存取</p></li>
+</ul>
+<h4 id="引入头结点">引入头结点</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/oYFJHtpuyglbeOz.png" alt="2.3.1-不带头结点的单链表.png" /><figcaption aria-hidden="true">2.3.1-不带头结点的单链表.png</figcaption>
+</figure>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/alBQwZcEeoNk6OL.png" alt="2.3.1-带头结点的单链表.png" /><figcaption aria-hidden="true">2.3.1-带头结点的单链表.png</figcaption>
+</figure>
+<p>区别: 不管带不带头结点, 头指针时钟指向链表的第一个结点, 而头结点是带头结点的链表中的第一个结点, 结点内通常不存储信息</p>
+<p>引入头结点的优点:</p>
+<ol type="1">
+<li>链表中第一个位置上和其他位置的操作统一, 无需特殊处理</li>
+<li>空表和非空表的操作统一</li>
+</ol>
+<h3 id="单链表基本操作">2.3.2 单链表基本操作</h3>
+<h4 id="头插法建立单链表">1. 头插法建立单链表</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/Tw1gDlANxjIWzRi.png" alt="2.3.2-1-头插法建立单链表.png" /><figcaption aria-hidden="true">2.3.2-1-头插法建立单链表.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">List_HeadInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">  LNode *s; <span class="keyword">int</span> x;</span><br><span class="line">  L=(LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));  <span class="comment">//初始化头结点</span></span><br><span class="line">  L-&gt;next=<span class="literal">NULL</span>;                       <span class="comment">//初始化头结点</span></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  <span class="keyword">while</span>(x!=<span class="number">9999</span>)&#123;</span><br><span class="line">    s=(LNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));  <span class="comment">//生成新结点</span></span><br><span class="line">    s-&gt;data=x;                        <span class="comment">//新节点的值</span></span><br><span class="line">    s-&gt;next=L-&gt;next,</span><br><span class="line">    L-&gt;next=s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度(最坏): O(n)</p>
+<h4 id="尾插法建立单链表">2. 尾插法建立单链表</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/vy84gzZ7BPrCAuV.png" alt="2.3.2-2-尾插法建立单链表.png" /><figcaption aria-hidden="true">2.3.2-2-尾插法建立单链表.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LinkList <span class="title">List_TailInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  L=(LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">  LNode *s, *r=L;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  <span class="keyword">while</span>(x!=<span class="number">9999</span>)&#123;</span><br><span class="line">    s=(LNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));  <span class="comment">//生成新结点</span></span><br><span class="line">    s-&gt;data=x;                        <span class="comment">//新节点的值</span></span><br><span class="line">    r-&gt;next=s;</span><br><span class="line">    r=s;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  &#125;</span><br><span class="line">  r-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度(最坏): O(n)</p>
+<h4 id="按序号查找结点值">3. 按序号查找结点值</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LNode *<span class="title">GetElem</span><span class="params">(LinkList L, <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j=<span class="number">1</span>;</span><br><span class="line">  LNode *p=L-&gt;next;</span><br><span class="line">  <span class="keyword">if</span>(i==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> L;</span><br><span class="line">  <span class="keyword">if</span> (i&lt;<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>; </span><br><span class="line">  <span class="keyword">while</span>(p&amp;&amp;j&lt;i)&#123;</span><br><span class="line">    p=p-&gt;next;</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度(最坏): O(n), n: 单链表表长</p>
+<h4 id="按值查找表结点">4. 按值查找表结点</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LNode *<span class="title">LocateElem</span><span class="params">(LinkList L, ElemType e)</span></span>&#123;</span><br><span class="line">  LNode *p=L-&gt;next;</span><br><span class="line">  <span class="keyword">while</span>(p!=<span class="literal">NULL</span>&amp;&amp;p-&gt;data!=e)</span><br><span class="line">    p=p-&gt;next;</span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度(最坏): O(n)</p>
+<h4 id="插入结点操作">5. 插入结点操作</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/3KFtkgs4inS8dJo.png" alt="2.3.2-5-插入结点操作.png" /><figcaption aria-hidden="true">2.3.2-5-插入结点操作.png</figcaption>
+</figure>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p=GetElem(L, i<span class="number">-1</span>);</span><br><span class="line">s-&gt;next=p-&gt;next;</span><br><span class="line">p-&gt;next=s;</span><br></pre></td></tr></table></figure> 时间复杂度(最坏): O(n)</p>
+<h5 id="前插法-vs-后插法">前插法 vs 后插法</h5>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/FSPfABjkrwcRy45.png" alt="2.3.2-5-前插法vs后插法.png" /><figcaption aria-hidden="true">2.3.2-5-前插法vs后插法.png</figcaption>
+</figure>
+<p><strong>如果第 <span class="math inline">\(i\)</span> 号节点的位置已知</strong>, 前插法(O(n)) 和后插法(O(1)) 出现区别, 但是可以通过后插法实现前插法使时间复杂度也为O(1) --&gt; 先通过后插法插入结点, 再交换数据域。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将*s结点插入到*p之前的主要代码片段</span></span><br><span class="line">s-&gt;next=p-&gt;next;</span><br><span class="line">p-&gt;next=s;</span><br><span class="line">s-&gt;data=temp;    <span class="comment">//交换数据域</span></span><br><span class="line">p-&gt;data=s-&gt;data;</span><br><span class="line">s-&gt;data=temp;</span><br></pre></td></tr></table></figure>
+<h4 id="删除结点操作">6. 删除结点操作</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/YOvWIfb5VuM2Ncl.png" alt="2.3.2-6-删除结点操作.png" /><figcaption aria-hidden="true">2.3.2-6-删除结点操作.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p=GetElem(L, i<span class="number">-1</span>);    <span class="comment">//找到删除位置的前驱结点</span></span><br><span class="line">q=p-&gt;next;            <span class="comment">//令q指向被删除的结点</span></span><br><span class="line">p-&gt;next=q-&gt;next;<span class="built_in">free</span>(q);              <span class="comment">//释放结点的存储空间</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>free(q)</code> 的作用是由系统回收一个 <code>LNode</code> 型的结点, 回收后的空间可供再次生成结点时使用</p>
+</blockquote>
+<p>时间复杂度O(n)</p>
+<h5 id="删除给定结点p">删除给定结点*p</h5>
+<p>先交换数据元素, 再删除给定结点, 时间复杂度O(1)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q=p-&gt;next;p-&gt;data=p-&gt;next-&gt;data;p-&gt;next=q-&gt;next;<span class="built_in">free</span>(q);</span><br></pre></td></tr></table></figure>
+<h4 id="求表长操作">7. 求表长操作</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/9lkcrBfVyeXbau1.png" alt="2.3.2-7-求表长操作.png" /><figcaption aria-hidden="true">2.3.2-7-求表长操作.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">p=head;</span><br><span class="line"><span class="keyword">while</span>(p-&gt;next!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;  </span><br><span class="line">  count++;</span><br><span class="line">  p=p-&gt;next;&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度O(n)</p>
+<blockquote>
+<p>空表与与非空表统一</p>
+</blockquote>
+<h3 id="双链表">2.3.4 双链表</h3>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/tdhXM7u18b5scIi.png" alt="2.3.3-双链表示意图.png" /><figcaption aria-hidden="true">2.3.3-双链表示意图.png</figcaption>
+</figure>
+<ul>
+<li><p>双链表的结构: <img data-src="https://i.loli.net/2021/06/03/rilsSvLzuhdQD7A.png" alt="2.3.3-双链表的结构.png" /></p></li>
+<li><p>双链表的实现:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span>&#123;</span></span><br><span class="line">  ElemType data;                <span class="comment">//数据域</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span> *<span class="title">prior</span> *<span class="title">next</span>;</span>    <span class="comment">//前驱和后继指针</span></span><br><span class="line">&#125;DNode, *DLinkList;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="双链表的插入操作">1. 双链表的插入操作</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/SgRnrFGNbT1qOe3.png" alt="2.3.3-1-双链表的插入操作.png" /><figcaption aria-hidden="true">2.3.3-1-双链表的插入操作.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s-&gt;next=p-&gt;next;</span><br><span class="line">p-&gt;next-&gt;prior=s;</span><br><span class="line">s-&gt;prior=p;</span><br><span class="line">p-&gt;next=s;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度O(1)</p>
+<blockquote>
+<p>双链表的表头表尾的操作和普通结点的插入操作不同</p>
+</blockquote>
+<h4 id="双链表的删除操作">2. 双链表的删除操作</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/j2SR8XcibqZHOPx.png" alt="2.3.3-2-双链表的删除操作.png" /><figcaption aria-hidden="true">2.3.3-2-双链表的删除操作.png</figcaption>
+</figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p-&gt;next=q-&gt;next;</span><br><span class="line">q-&gt;next-&gt;prior=p;</span><br><span class="line"><span class="built_in">free</span>(q);</span><br></pre></td></tr></table></figure>
+<p>时间复杂度O(1)</p>
+<blockquote>
+<p>双链表的表头表尾的操作和普通结点的插入操作不同</p>
+</blockquote>
+<h3 id="循环列表">2.3.4 循环列表</h3>
+<h4 id="循环单链表">1. 循环单链表</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/lOYJTUqbhc8ZuXN.png" alt="2.3.4-1-循环单链表.png" /><figcaption aria-hidden="true">2.3.4-1-循环单链表.png</figcaption>
+</figure>
+<p>仅尾指针操作效率会高</p>
+<p>判空条件:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L-&gt;next==L;</span><br></pre></td></tr></table></figure>
+<h4 id="循环双链表">2. 循环双链表</h4>
+<figure>
+<img data-src="https://i.loli.net/2021/06/03/nbQhgYJ6ydMsNKB.png" alt="2.3.4-2-循环双链表.png" /><figcaption aria-hidden="true">2.3.4-2-循环双链表.png</figcaption>
+</figure>
+<p>判空条件:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">L-&gt;next==L;</span><br><span class="line">L-&gt;prior==L;</span><br></pre></td></tr></table></figure>
+<h3 id="静态链表">2.3.5 静态链表</h3>
+<p>静态链表是借助数组料描述顺序表的链式结构的, 不同的是指针是结点的相对地址(数组下标), 又称<label style="color:red">游标</label>。</p>
+<blockquote>
+<p>表尾的指针相对地址标记为-1</p>
+</blockquote>
+<ul>
+<li><p>静态链表的实现:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MaxSize 50</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  ElemType data;</span><br><span class="line">  <span class="keyword">int</span> next;</span><br><span class="line">&#125;SLinlList[MaxSize];</span><br></pre></td></tr></table></figure></li>
+<li><p>特点:</p>
+<ul>
+<li>连续的存储空间</li>
+<li>长度不能随便增加</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>常用于没有指针的语言中</p>
+</blockquote>
+<h3 id="顺序表-vs-链表">2.3.6 顺序表 vs 链表</h3>
+<h4 id="顺序表和链表-的区别">顺序表和链表 的区别</h4>
+<ol type="1">
+<li><p><strong>存取(读写)方式</strong></p>
+<ul>
+<li><strong>链表</strong> 只能顺序读取</li>
+<li><strong>顺序表</strong> 既可以顺序读取也可以随机读取 <code>LOC(A)+(n-1)*sizeof(ElemType)</code></li>
+</ul></li>
+<li><p><strong>逻辑结构和物理结构</strong></p>
+<ul>
+<li><strong>链表</strong> 逻辑相邻物理上 <strong>不一定相邻</strong>, 通过 <strong>指针</strong> 表示逻辑关系</li>
+<li><strong>顺序表</strong> 逻辑相邻物理上 <strong>也相邻</strong>, 通过 <strong>相邻</strong> 表示逻辑关系</li>
+</ul></li>
+<li><p><strong>查找、插入和删除操作</strong></p>
+<ul>
+<li><p>查找</p>
+<ul>
+<li><p>链表: 按值查找 - O(n); 按序查找 - O(n)</p></li>
+<li><p>顺序表: 按值查找(无序) - O(n); 按序查找 - O(1)</p>
+<blockquote>
+<p>有序可以通过折半查找时间复杂度为<span class="math inline">\(O(log_2^n)\)</span></p>
+</blockquote></li>
+</ul></li>
+<li><p>插入&amp;删除</p>
+<ul>
+<li>链表: O(1) (节点指针已知); O(n) (节点指针未知), 但操作时只需修改指针</li>
+<li>顺序表: O(n) 且需要大量移动元素</li>
+</ul></li>
+</ul></li>
+<li><p><strong>空间分配</strong></p>
+<ul>
+<li><strong>顺序存储</strong>: 无论静态分配还是非静态都需要 <label style="color:red">预先分配</label> 合适的内存空间
+<ul>
+<li>静态分配 时预分配空间太大回造成浪费, 太小会造成溢出</li>
+<li>动态分配 时虽不会溢出但是扩充需要大量移动元素, 操作效率低</li>
+</ul></li>
+<li><strong>链式存储</strong>: 在 <label style="color:red">需要时分配</label> 结点空间即可, 高效方便, 但 <label style="color:red">指针</label> 要使用额外空间</li>
+</ul></li>
+</ol>
+<h4 id="怎样选择线性表的储存器结构">怎样选择线性表的储存器结构</h4>
+<p>存储: 规模难以估计7</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">顺序表(稳定)</th>
+<th style="text-align: center;">单链表(动态)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">存储</td>
+<td style="text-align: center;">规模难以估计</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✔️</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">存储密度</td>
+<td style="text-align: center;">✔️</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">效率</td>
+<td style="text-align: center;">按序号访问</td>
+<td style="text-align: center;">✔️</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">插入&amp;删除</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✔️</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">环境</td>
+<td style="text-align: center;">基于数组</td>
+<td style="text-align: center;">✔️</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">基于指针</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✔️</td>
+</tr>
+</tbody>
+</table>
+<h4 id="三个常用操作">三个常用操作</h4>
+<h5 id="最值">1. 最值</h5>
+<blockquote>
+<p>L = (3, 1, 5, 9, 2) MAX = 9 MIN = 1</p>
+</blockquote>
+<ul>
+<li><p>顺序表求最值 -- O(n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//顺序表求最值; 时间复杂度O(n)</span></span><br><span class="line"><span class="keyword">int</span> min=L[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">int</span> max=L[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, i&lt;n, i++)&#123;  </span><br><span class="line">  <span class="keyword">if</span> min&gt;L[i]    </span><br><span class="line">    min=L[i];</span><br><span class="line">  <span class="keyword">if</span> max&lt;L[i]</span><br><span class="line">    max=L[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>单链表求最值 -- O(n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单链表求最值; 时间复杂度O(n)</span></span><br><span class="line"><span class="keyword">int</span> min=p-&gt;next-&gt;data;</span><br><span class="line"><span class="keyword">int</span> max=p-&gt;next-&gt;data;</span><br><span class="line"><span class="keyword">for</span>(;p!=<span class="literal">NULL</span>;p=p-&gt;next)&#123;  </span><br><span class="line">  <span class="keyword">if</span> (min&lt;p-&gt;data)    </span><br><span class="line">    min=p-&gt;data;  </span><br><span class="line">  <span class="keyword">if</span> (max&gt;p-&gt;data)    </span><br><span class="line">    max-p-&gt;data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="逆置">2. 逆置</h5></li>
+</ul>
+<blockquote>
+<p>L = (3, 1, 5, 9, 2) LR = (2, 9, 5, 1, 3)</p>
+</blockquote>
+<ul>
+<li><p>顺序表逆置 -- O(n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//顺序表逆置; 时间复杂度O(n)</span></span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> j=n<span class="number">-1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;j)&#123;  </span><br><span class="line">  temp=L[i];  </span><br><span class="line">  L[i]=L[j];  </span><br><span class="line">  L[j]=temp;  </span><br><span class="line">  i++;  </span><br><span class="line">  j--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>单链表逆置(将头结点之后, r结点之前的结点依次接到r的后面) -- O(n) <img data-src="https://i.loli.net/2021/06/03/aheduQg1Bq9OVGb.png" alt="2.3.6-单链表逆置.png" /></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单链表逆置; 时间复杂度O(n)</span></span><br><span class="line"><span class="keyword">while</span>(p-&gt;next=!r)&#123;  </span><br><span class="line">  temp=p-&gt;next;  </span><br><span class="line">  p-&gt;next=temp-&gt;next;  </span><br><span class="line">  temp-&gt;next=r-&gt;next;  </span><br><span class="line">  r-&gt;next=temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="归并">3. 归并</h5></li>
+</ul>
+<blockquote>
+<p>L1 = (1, 2, 3, 5) L2 = (4, 6, 7, 8) L = (1, 2, 3, 4, 5, 6, 7, 8)</p>
+</blockquote>
+<ul>
+<li><p>顺序表归并 -- O(n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;L1_Size&amp;&amp;j&lt;L2_Size;k++)&#123;   <span class="comment">//循环到L1或L2末尾  </span></span><br><span class="line">  <span class="keyword">if</span>(L1[i]&lt;L2[j])    </span><br><span class="line">    L[k]=L1[i++];  </span><br><span class="line">  <span class="keyword">else</span>    </span><br><span class="line">    L[k]=L2[j++];&#125;</span><br><span class="line"><span class="keyword">while</span>(i&lt;L1_Size)  </span><br><span class="line">  L[k++]=L1[i++];</span><br><span class="line"><span class="keyword">while</span>(j&lt;L2_Size)  </span><br><span class="line">  L[k++]=L2[j++];</span><br></pre></td></tr></table></figure></li>
+<li><p>单链表归并 -- O(n) <img data-src="https://i.loli.net/2021/06/03/PuV2KDkf4cW6TC7.png" alt="2.3.6-单链表归并.png" /></p></li>
+</ul>
+
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束，感谢您的阅读。-------------</div>
+    
+</div>
+      
+    </div>
+    
+    
+    
+        <div class="reward-container">
+  <div>自惭菲薄才，误蒙国士恩。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatRewardCode.JPG" alt="野谷 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipayCode.JPG" alt="野谷 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>野谷
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.yegu.top/posts/58986168.html" title="数据结构笔记02-线性表">https://www.yegu.top/posts/58986168.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/29ebe13f.html" rel="prev" title="数据结构笔记01-数据结构基本概念">
+      <i class="fa fa-chevron-left"></i> 数据结构笔记01-数据结构基本概念
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">2.1 线性表的定义和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">线性表的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">线性表的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E4%B9%9D%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">线性表的九种基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA"><span class="nav-text">2.2 线性表的顺序表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">2.2.1顺序表的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">2.2.2 顺序表基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-text">按值查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="nav-text">2.3 线性表的链式表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">2.3.1 单链表的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-text">基本定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%A4%B4%E7%BB%93%E7%82%B9"><span class="nav-text">引入头结点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">2.3.2 单链表基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B4%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-text">1. 头插法建立单链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BE%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-text">2. 尾插法建立单链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E5%BA%8F%E5%8F%B7%E6%9F%A5%E6%89%BE%E7%BB%93%E7%82%B9%E5%80%BC"><span class="nav-text">3. 按序号查找结点值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE%E8%A1%A8%E7%BB%93%E7%82%B9"><span class="nav-text">4. 按值查找表结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E7%BB%93%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="nav-text">5. 插入结点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E6%8F%92%E6%B3%95-vs-%E5%90%8E%E6%8F%92%E6%B3%95"><span class="nav-text">前插法 vs 后插法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="nav-text">6. 删除结点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BB%99%E5%AE%9A%E7%BB%93%E7%82%B9p"><span class="nav-text">删除给定结点*p</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E8%A1%A8%E9%95%BF%E6%93%8D%E4%BD%9C"><span class="nav-text">7. 求表长操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="nav-text">2.3.4 双链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="nav-text">1. 双链表的插入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 双链表的删除操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%88%97%E8%A1%A8"><span class="nav-text">2.3.4 循环列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-text">1. 循环单链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="nav-text">2. 循环双链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8"><span class="nav-text">2.3.5 静态链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8-vs-%E9%93%BE%E8%A1%A8"><span class="nav-text">2.3.6 顺序表 vs 链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%92%8C%E9%93%BE%E8%A1%A8-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">顺序表和链表 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%8E%E6%A0%B7%E9%80%89%E6%8B%A9%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%82%A8%E5%AD%98%E5%99%A8%E7%BB%93%E6%9E%84"><span class="nav-text">怎样选择线性表的储存器结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-text">三个常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%80%BC"><span class="nav-text">1. 最值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%86%E7%BD%AE"><span class="nav-text">2. 逆置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6"><span class="nav-text">3. 归并</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="野谷"
+      src="https://i.loli.net/2021/05/21/J5CNRjyPItOwvL8.png">
+  <p class="site-author-name" itemprop="name">野谷</p>
+  <div class="site-description" itemprop="description">门前种柳深成巷，野谷流泉添入池。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liamxc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liamxc" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:liam-wang@outlook.com" title="E-Mail → mailto:liam-wang@outlook.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://liamxc.github.io/about" title="WeChat → https:&#x2F;&#x2F;liamxc.github.io&#x2F;about" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weixin fa-fw"></i>WeChat</a>
+      </span>
+  </div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-undefined">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/posts/58986168.html" title="数据结构笔记02-线性表" target="_blank">数据结构笔记02-线性表</a>
+          </li>
+        
+          <li>
+            <a href="/posts/29ebe13f.html" title="数据结构笔记01-数据结构基本概念" target="_blank">数据结构笔记01-数据结构基本概念</a>
+          </li>
+        
+          <li>
+            <a href="/posts/97a4afd2.html" title="毛中特笔记" target="_blank">毛中特笔记</a>
+          </li>
+        
+          <li>
+            <a href="/posts/bbd2dca3.html" title="史纲笔记" target="_blank">史纲笔记</a>
+          </li>
+        
+          <li>
+            <a href="/posts/ac3aa996.html" title="思修法基笔记" target="_blank">思修法基笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+
+<br>
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-coffee"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">野谷</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://www.yegu.top/posts/58986168.html',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'Y1g8KkJdjfUoc1ggL1Ocy2GY-MdYXbMMI',
+      appKey     : 'f8R9NrXXC12sJkRQEYMu1zA5',
+      placeholder: "欢迎发表评论,我会尽快回复你的",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
