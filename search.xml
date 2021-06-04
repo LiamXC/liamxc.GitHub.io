@@ -559,7 +559,7 @@ n=n_1+2n_2+1(根节点)
 <ol type="1">
 <li>若被删除的结点z是 <strong>叶子结点</strong>, 则直接删除。(删除1, 3, 7, 10)</li>
 <li>若被删除的结点z只有 <strong>一棵子树</strong>, 则让z的子树称为父结点的子树, 代替z结点。(删除5, 16)</li>
-<li>若被删除的结点z有 <strong>两棵子树</strong>, 则让z的中序序列直接后继代替z, 并删除直接后继结点。</li>
+<li>若被删除的结点z有 <strong>两棵子树</strong>, 则让z的中序序列直接后继(<strong>左子树最大值</strong>)代替z, 并删除直接后继结点。</li>
 </ol>
 <p>在二叉排序树中删除并插入某节点, 得到的二叉排序树是否与原来相同</p>
 <p>可能相同也可能不同, 如果删除和插入的是叶子结点, 则没有变化 (如删除7); 如果删除和插入的不是叶子结点, 就会发生改变 (如删除5)</p>
@@ -568,7 +568,8 @@ n=n_1+2n_2+1(根节点)
 <p>平均查找长度 (ASL) 取决于树的高度。</p>
 <blockquote>
 <p>例: {2, 1, 4, 3} {1, 2, 3, 4} <img data-src="https://i.loli.net/2021/06/03/InFEv8mp9zfDxLc.png" alt="5.5.1-二叉排序树的构造.png" /></p>
-<p><span class="math inline">\(ASL=(1+2*2+3)/4=2\)</span> -- <label style="color:red"><span class="math inline">\(O(log_2(n))\)</span></label> <span class="math inline">\(ASL=(1+2+3+4)/4=2.5\)</span> -- <label style="color:red"><span class="math inline">\(O(n)\)</span></label></p>
+<p><span class="math inline">\(ASL=(1+2*2+3)/4=2\)</span> -- <label style="color:red"><span class="math inline">\(O(log_2(n))\)</span></label></p>
+<p><span class="math inline">\(ASL=(1+2+3+4)/4=2.5\)</span> -- <label style="color:red"><span class="math inline">\(O(n)\)</span></label></p>
 </blockquote>
 <h3 id="平衡二叉树-1">5.5.2 平衡二叉树</h3>
 <p>平衡二叉树(Balanced Binary Tree): AVL, 任意节点的 <strong>平衡因子</strong> 的绝对值不超过一。</p>
